@@ -27,7 +27,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   List<Map<String, List<String>>> pictureList = [
     {
       'Мои фото': [
@@ -62,36 +61,37 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: pictureList.length,
-      child: Scaffold(
+        length: pictureList.length,
+        child: Scaffold(
           appBar: AppBar(
             title: Text('Skillbox homework 4'),
             centerTitle: true,
             bottom: TabBar(
-                tabs:
-                    pictureList.map((e) => Tab(text: e.keys.first,)).toList(),
-                indicator: BoxDecoration(color: Colors.lightBlue),),
+              tabs: pictureList
+                  .map((e) => Tab(
+                        text: e.keys.first,
+                      ))
+                  .toList(),
+              indicator: BoxDecoration(color: Colors.lightBlue),
+            ),
           ),
           body: TabBarView(
-
-    children: pictureList.map((e) {
-
-      return ListView.builder(
-        key: PageStorageKey(e),
-        itemCount: e.values.first.length,
-          itemBuilder: (context,index){
-          return Column(
-            children: [
-              Image.network(e.values.first[index]),
-              SizedBox(height: 10,)
-            ],
-          );
-          }
-      );
-    }).toList(),
-    ),)
-    );
+            children: pictureList.map((e) {
+              return ListView.builder(
+                  key: PageStorageKey(e),
+                  itemCount: e.values.first.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Image.network(e.values.first[index]),
+                        SizedBox(
+                          height: 10,
+                        )
+                      ],
+                    );
+                  });
+            }).toList(),
+          ),
+        ));
   }
 }
-
-
